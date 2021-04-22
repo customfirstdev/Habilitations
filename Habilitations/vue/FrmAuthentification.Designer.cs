@@ -78,7 +78,7 @@
             this.btnConnect.TabIndex = 4;
             this.btnConnect.Text = "se connecter";
             this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            this.btnConnect.Click += new System.EventHandler(this.BtnConnect_Click);
             // 
             // txtPrenom
             // 
