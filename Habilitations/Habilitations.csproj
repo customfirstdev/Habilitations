@@ -93,7 +93,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controleur\Controle.cs" />
-    <Compile Include="connexion\ConnexionBDD.cs" />
+    <Compile Include="connexion\ConnexionBdd.cs" />
     <Compile Include="dal\AccesDonnees.cs" />
     <Compile Include="vue\FrmAuthentification.cs">
       <SubType>Form</SubType>

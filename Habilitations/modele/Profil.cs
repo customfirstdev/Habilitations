@@ -4,8 +4,8 @@ namespace Habilitations.modele
     public class Profil
     {
 
-        private int idprofil;
-        private string nom;
+        private readonly int idprofil;
+        private readonly string nom;
 
         /// <summary>
         /// Constructeur : valorise les propriétés
