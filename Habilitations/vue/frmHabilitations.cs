@@ -87,34 +87,36 @@ namespace Habilitations.vue
         {
             if (dgvDeveloppeurs.SelectedRows.Count > 0)
             {
+                
                 if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
                 {
                     MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
                 }
                 else
                 {
-                    if (dgvDeveloppeurs.SelectedRows.Count > 0)
-                    {
-                        Developpeur developpeur = (Developpeur)bdgDeveloppeurs.List[bdgDeveloppeurs.Position];
+                    Developpeur developpeur = (Developpeur)bdgDeveloppeurs.List[bdgDeveloppeurs.Position];
                     if (MessageBox.Show("Voulez-vous vraiment supprimer " + developpeur.Nom + " " + developpeur.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
-                        {
-                            controle.DelDeveloppeur(developpeur);
-                            RemplirListeDeveloppeurs();
-                        }
+                    { 
+                        controle.DelDeveloppeur(developpeur);
+                        RemplirListeDeveloppeurs();
+                            
                     }
-                    else
-                    {
-                        MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
-                    }
+                    
                 }
+
             }
             else
             {
                 MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
 
+
+
+        }   
             
-        }
+
+            
+        
 
         /// <summary>
         /// Vide les zones de saisie
