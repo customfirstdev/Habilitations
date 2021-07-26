@@ -85,7 +85,7 @@ namespace Habilitations.vue
         /// <param name="e"></param>
         private void BtnSupprimer_Click(object sender, System.EventArgs e)
         {
-            if (dgvDeveloppeurs.SelectedRows.Count > 0)
+            if (dgvDeveloppeurs.SelectedRows.Count > 0)  
             {
                 
                 if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
