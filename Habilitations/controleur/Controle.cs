@@ -14,7 +14,7 @@ namespace Habilitations.controleur
         /// <summary>
         /// fenêtre d'authentification
         /// </summary>
-        private FrmAuthentification frmAuthentification;
+        private readonly FrmAuthentification frmAuthentification;
 
         /// <summary>
         /// Ouverture de la fenêtre

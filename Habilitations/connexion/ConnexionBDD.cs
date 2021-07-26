@@ -17,7 +17,7 @@ namespace Habilitations.connexion
         /// <summary>
         /// objet de connexion à la BDD à partir d'une chaîne de connexion
         /// </summary>
-        private MySqlConnection connection;
+        private readonly MySqlConnection connection;
         /// <summary>
         /// objet pour exécuter une requête SQL
         /// </summary>
