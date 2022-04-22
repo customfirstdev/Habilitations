@@ -14,19 +14,21 @@ namespace Habilitations.vue
         /// <summary>
         /// instance du controleur
         /// </summary>
-        private Controle controle;
+        private readonly Controle controle;
         /// <summary>
         /// Booléen pour savoir si une modification est demandée
         /// </summary>
         private Boolean enCoursDeModif = false;
+
         /// <summary>
         /// Objet pour gérer la liste des développeurs
         /// </summary>
-        BindingSource bdgDeveloppeurs = new BindingSource();
+        readonly BindingSource bdgDeveloppeurs = new BindingSource();
+
         /// <summary>
         /// Objet pour gérer la liste des profils
         /// </summary>
-        BindingSource bdgProfils = new BindingSource();
+        readonly BindingSource bdgProfils = new BindingSource();
 
         /// <summary>
         /// Initialisation des composants graphiques
@@ -85,13 +87,17 @@ namespace Habilitations.vue
         /// <param name="e"></param>
         private void BtnSupprimer_Click(object sender, System.EventArgs e)
         {
-            if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
+            if (dgvDeveloppeurs.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
             else
             {
-                if (dgvDeveloppeurs.SelectedRows.Count > 0)
+                if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
+                {
+                    MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
+                }
+                else
                 {
                     Developpeur developpeur = (Developpeur)bdgDeveloppeurs.List[bdgDeveloppeurs.Position];
                     if (MessageBox.Show("Voulez-vous vraiment supprimer " + developpeur.Nom + " " + developpeur.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -99,10 +105,6 @@ namespace Habilitations.vue
                         controle.DelDeveloppeur(developpeur);
                         RemplirListeDeveloppeurs();
                     }
-                }
-                else
-                {
-                    MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
                 }
             }
         }
@@ -256,6 +258,13 @@ namespace Habilitations.vue
             grbLesDeveloppeurs.Enabled = true;
             grbDeveloppeur.Enabled = true;
             grbPwd.Enabled = false;
+        }
+
+#pragma warning disable S1186 // Methods should not be empty
+        private void FrmHabilitations_Load(object sender, EventArgs e)
+#pragma warning restore S1186 // Methods should not be empty
+        {
+
         }
     }
 }

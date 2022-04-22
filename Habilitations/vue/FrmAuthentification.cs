@@ -12,7 +12,7 @@ namespace Habilitations.vue
         /// <summary>
         /// instance du controleur
         /// </summary>
-        private Controle controle;
+        private readonly Controle controle;
 
         public FrmAuthentification(Controle controle)
         {
@@ -25,15 +25,14 @@ namespace Habilitations.vue
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnConnect_Click(object sender, EventArgs e)
+        private void BtnConnect_Click(object sender, EventArgs e)
         {
             if (!txtNom.Text.Equals("") && !txtPrenom.Text.Equals("") && !txtPwd.Text.Equals(""))
             {
                 if (!controle.ControleAuthentification(txtNom.Text, txtPrenom.Text, txtPwd.Text))
                 {
                     MessageBox.Show("Authentification incorrecte ou vous n'êtes pas admin", "Alerte");
-                    txtNom.Text = "";
-                    txtPrenom.Text = "";
+          
                     txtPwd.Text = "";
                     txtNom.Focus();
                 }
@@ -42,6 +41,11 @@ namespace Habilitations.vue
             {
                 MessageBox.Show("Tous les champs doivent être remplis.", "Information");
             }
+        }
+
+        private void FrmAuthentification_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
