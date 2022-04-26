@@ -85,25 +85,25 @@ namespace Habilitations.vue
         /// <param name="e"></param>
         private void BtnSupprimer_Click(object sender, System.EventArgs e)
         {
-            if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
+            if (dgvDeveloppeurs.SelectedRows.Count > 0)
             {
-                MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
-            }
-            else
-            {
-                if (dgvDeveloppeurs.SelectedRows.Count > 0)
+                Developpeur developpeur = (Developpeur)bdgDeveloppeurs.List[bdgDeveloppeurs.Position];
+                if (developpeur.Profil.Equals("admin"))
                 {
-                    Developpeur developpeur = (Developpeur)bdgDeveloppeurs.List[bdgDeveloppeurs.Position];
+                    MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
+                }
+                else
+                {
                     if (MessageBox.Show("Voulez-vous vraiment supprimer " + developpeur.Nom + " " + developpeur.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
                     {
                         controle.DelDeveloppeur(developpeur);
                         RemplirListeDeveloppeurs();
                     }
                 }
-                else
-                {
-                    MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
-                }
+            }
+            else
+            {
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
         }
 
