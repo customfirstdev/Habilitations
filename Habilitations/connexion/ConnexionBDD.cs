@@ -17,11 +17,7 @@ namespace Habilitations.connexion
         /// <summary>
         /// objet de connexion à la BDD à partir d'une chaîne de connexion
         /// </summary>
-        private MySqlConnection connection;
-        /// <summary>
-        /// objet pour exécuter une requête SQL
-        /// </summary>
-        private MySqlCommand command;
+        private readonly MySqlConnection connection;
         /// <summary>
         /// objet contenant le résultat d'une requête "select" (curseur)
         /// </summary>
@@ -68,7 +64,7 @@ namespace Habilitations.connexion
         {
             try
             {
-                command = new MySqlCommand(stringQuery, connection);
+                MySqlCommand command = new MySqlCommand(stringQuery, connection);
                 if (!(parameters is null))
                 {
                     foreach (KeyValuePair<string, object> parameter in parameters)
@@ -93,7 +89,7 @@ namespace Habilitations.connexion
         {
             try
             {
-                command = new MySqlCommand(stringQuery, connection);
+                MySqlCommand command = new MySqlCommand(stringQuery, connection);
                 if (!(parameters is null))
                 {
                     foreach (KeyValuePair<string, object> parameter in parameters)

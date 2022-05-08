@@ -8,12 +8,12 @@ namespace Habilitations.dal
     /// <summary>
     /// Classe permettant de gérer les demandes concernant les données distantes
     /// </summary>
-    public class AccesDonnees
+    public static class AccesDonnees
     {
         /// <summary>
         /// chaine de connexion à la bdd
         /// </summary>
-        private static string connectionString = "server=localhost;user id=habilitations;password=motdepasseuser;database=habilitations;SslMode=none";
+        private static readonly string connectionString = "server=localhost;user id=root;database=habilitations;SslMode=none";
 
         /// <summary>
         /// Controle si l'utillisateur a le droit de se connecter (nom, prénom, pwd est profil "admin")

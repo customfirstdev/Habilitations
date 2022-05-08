@@ -14,8 +14,7 @@ namespace Habilitations
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            //            Application.Run(new vue.Form1());
-            new Controle();
+            _ = new Controle();
         }
     }
 }
