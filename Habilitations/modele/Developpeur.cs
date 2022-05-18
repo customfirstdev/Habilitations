@@ -3,14 +3,14 @@ namespace Habilitations.modele
 {
     public class Developpeur
     {
-        private int iddeveloppeur;
-        private string nom;
-        private string prenom;
-        private string tel;
-        private string mail;
+        private readonly int iddeveloppeur;
+        private readonly string nom;
+        private readonly string prenom;
+        private readonly string tel;
+        private readonly string mail;
         private string pwd;
-        private int idprofil;
-        private string profil;
+        private readonly int idprofil;
+        private readonly string profil;
 
         public int Iddeveloppeur { get => iddeveloppeur; }
         public string Nom { get => nom; }

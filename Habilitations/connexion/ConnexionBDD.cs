@@ -17,11 +17,7 @@ namespace Habilitations.connexion
         /// <summary>
         /// objet de connexion à la BDD à partir d'une chaîne de connexion
         /// </summary>
-        private MySqlConnection connection;
-        /// <summary>
-        /// objet pour exécuter une requête SQL
-        /// </summary>
-        private MySqlCommand command;
+        private readonly MySqlConnection connection;
         /// <summary>
         /// objet contenant le résultat d'une requête "select" (curseur)
         /// </summary>
@@ -66,6 +62,7 @@ namespace Habilitations.connexion
         /// <param name="parameters">dictionnire contenant les parametres</param>
         public void ReqUpdate(string stringQuery, Dictionary<string, object> parameters)
         {
+            MySqlCommand command;
             try
             {
                 command = new MySqlCommand(stringQuery, connection);
@@ -91,6 +88,7 @@ namespace Habilitations.connexion
         /// <param name="stringQuery">requête select</param>
         public void ReqSelect(string stringQuery, Dictionary<string, object> parameters)
         {
+            MySqlCommand command;
             try
             {
                 command = new MySqlCommand(stringQuery, connection);
