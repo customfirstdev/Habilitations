@@ -8,20 +8,16 @@ namespace Habilitations.connexion
     /// <summary>
     /// Connexion à la base de données et exécution des requêtes
     /// </summary>
-    public class ConnexionBDD
+    public class ConnexionBdd
     {
         /// <summary>
         /// Unique instance de la classe
         /// </summary>
-        private static ConnexionBDD instance = null;
+        private static ConnexionBdd instance = null;
         /// <summary>
         /// objet de connexion à la BDD à partir d'une chaîne de connexion
         /// </summary>
-        private MySqlConnection connection;
-        /// <summary>
-        /// objet pour exécuter une requête SQL
-        /// </summary>
-        private MySqlCommand command;
+        private readonly MySqlConnection connection;
         /// <summary>
         /// objet contenant le résultat d'une requête "select" (curseur)
         /// </summary>
@@ -31,7 +27,7 @@ namespace Habilitations.connexion
         /// Constructeur privé pour créer la connexion à la BDD et l'ouvrir
         /// </summary>
         /// <param name="stringConnect">chaine de connexion</param>
-        private ConnexionBDD(string stringConnect)
+        private ConnexionBdd(string stringConnect)
         {
             try
             {
@@ -50,11 +46,11 @@ namespace Habilitations.connexion
         /// </summary>
         /// <param name="stringConnect">chaine de connexion</param>
         /// <returns>instance unique de la classe</returns>
-        public static ConnexionBDD GetInstance(string stringConnect)
+        public static ConnexionBdd GetInstance(string stringConnect)
         {
             if (instance is null)
             {
-                instance = new ConnexionBDD(stringConnect);
+                instance = new ConnexionBdd(stringConnect);
             }
             return instance;
         }
@@ -68,7 +64,7 @@ namespace Habilitations.connexion
         {
             try
             {
-                command = new MySqlCommand(stringQuery, connection);
+                MySqlCommand command = new MySqlCommand(stringQuery, connection);
                 if (!(parameters is null))
                 {
                     foreach (KeyValuePair<string, object> parameter in parameters)
@@ -93,7 +89,7 @@ namespace Habilitations.connexion
         {
             try
             {
-                command = new MySqlCommand(stringQuery, connection);
+                MySqlCommand command = new MySqlCommand(stringQuery, connection);
                 if (!(parameters is null))
                 {
                     foreach (KeyValuePair<string, object> parameter in parameters)

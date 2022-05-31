@@ -3,14 +3,13 @@ namespace Habilitations.modele
 {
     public class Developpeur
     {
-        private int iddeveloppeur;
-        private string nom;
-        private string prenom;
-        private string tel;
-        private string mail;
-        private string pwd;
-        private int idprofil;
-        private string profil;
+        private readonly int iddeveloppeur;
+        private readonly string nom;
+        private readonly string prenom;
+        private readonly string tel;
+        private readonly string mail;
+        private readonly int idprofil;
+        private readonly string profil;
 
         public int Iddeveloppeur { get => iddeveloppeur; }
         public string Nom { get => nom; }
@@ -19,7 +18,7 @@ namespace Habilitations.modele
         public string Mail { get => mail; }
         public int Idprofil { get => idprofil; }
         public string Profil { get => profil; }
-        public string Pwd { get => pwd; set => pwd = value; }
+        public string Pwd { get; set; }
 
         /// <summary>
         /// Constructeur : valorise les propriétés

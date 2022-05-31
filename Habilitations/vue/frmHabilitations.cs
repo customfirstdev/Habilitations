@@ -14,19 +14,20 @@ namespace Habilitations.vue
         /// <summary>
         /// instance du controleur
         /// </summary>
-        private Controle controle;
+        private readonly Controle controle;
         /// <summary>
         /// Booléen pour savoir si une modification est demandée
         /// </summary>
         private Boolean enCoursDeModif = false;
+
         /// <summary>
         /// Objet pour gérer la liste des développeurs
         /// </summary>
-        BindingSource bdgDeveloppeurs = new BindingSource();
+        readonly BindingSource bdgDeveloppeurs = new BindingSource();
         /// <summary>
         /// Objet pour gérer la liste des profils
         /// </summary>
-        BindingSource bdgProfils = new BindingSource();
+        readonly BindingSource bdgProfils = new BindingSource();
 
         /// <summary>
         /// Initialisation des composants graphiques

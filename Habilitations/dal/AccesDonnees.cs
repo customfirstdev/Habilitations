@@ -8,12 +8,12 @@ namespace Habilitations.dal
     /// <summary>
     /// Classe permettant de gérer les demandes concernant les données distantes
     /// </summary>
-    public class AccesDonnees
+    public static class AccesDonnees
     {
         /// <summary>
         /// chaine de connexion à la bdd
         /// </summary>
-        private static string connectionString = "server=localhost;user id=habilitations;password=motdepasseuser;database=habilitations;SslMode=none";
+        private static readonly string connectionString = "server=localhost;user id=habilitations;password=motdepasseuser;database=habilitations;SslMode=none";
 
         /// <summary>
         /// Controle si l'utillisateur a le droit de se connecter (nom, prénom, pwd est profil "admin")
@@ -26,11 +26,13 @@ namespace Habilitations.dal
         {
             string req = "select * from developpeur d join profil p on d.idprofil=p.idprofil ";
             req += "where d.nom=@nom and d.prenom=@prenom and pwd=SHA2(@pwd, 256) and p.nom='admin';";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@nom", nom);
-            parameters.Add("@prenom", prenom);
-            parameters.Add("@pwd", pwd);
-            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@nom", nom },
+                { "@prenom", prenom },
+                { "@pwd", pwd }
+            };
+            ConnexionBdd curs = ConnexionBdd.GetInstance(connectionString);
             curs.ReqSelect(req, parameters);
             if (curs.Read())
             {
@@ -54,7 +56,7 @@ namespace Habilitations.dal
             string req = "select d.iddeveloppeur as iddeveloppeur, d.nom as nom, d.prenom as prenom, d.tel as tel, d.mail as mail, p.idprofil as idprofil, p.nom as profil ";
             req += "from developpeur d join profil p on (d.idprofil = p.idprofil) ";
             req += "order by nom, prenom;";
-            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            ConnexionBdd curs = ConnexionBdd.GetInstance(connectionString);
             curs.ReqSelect(req, null);
             while (curs.Read())
             {
@@ -73,7 +75,7 @@ namespace Habilitations.dal
         {
             List<Profil> lesProfils = new List<Profil>();
             string req = "select * from profil order by nom;";
-            ConnexionBDD curs = ConnexionBDD.GetInstance(connectionString);
+            ConnexionBdd curs = ConnexionBdd.GetInstance(connectionString);
             curs.ReqSelect(req, null);
             while (curs.Read())
             {
@@ -91,9 +93,11 @@ namespace Habilitations.dal
         public static void DelDepveloppeur(Developpeur developpeur)
         {
             string req = "delete from developpeur where iddeveloppeur = @iddeveloppeur;";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@iddeveloppeur", developpeur.Iddeveloppeur);
-            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@iddeveloppeur", developpeur.Iddeveloppeur }
+            };
+            ConnexionBdd conn = ConnexionBdd.GetInstance(connectionString);
             conn.ReqUpdate(req, parameters);
         }
 
@@ -105,14 +109,16 @@ namespace Habilitations.dal
         {
             string req = "insert into developpeur(nom, prenom, tel, mail, pwd, idprofil) ";
             req += "values (@nom, @prenom, @tel, @mail, @pwd, @idprofil);";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@nom", developpeur.Nom);
-            parameters.Add("@prenom", developpeur.Prenom);
-            parameters.Add("@tel", developpeur.Tel);
-            parameters.Add("@mail", developpeur.Mail);
-            parameters.Add("@pwd", GetStringSha256Hash(developpeur.Nom));
-            parameters.Add("@idprofil", developpeur.Idprofil);
-            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@nom", developpeur.Nom },
+                { "@prenom", developpeur.Prenom },
+                { "@tel", developpeur.Tel },
+                { "@mail", developpeur.Mail },
+                { "@pwd", GetStringSha256Hash(developpeur.Nom) },
+                { "@idprofil", developpeur.Idprofil }
+            };
+            ConnexionBdd conn = ConnexionBdd.GetInstance(connectionString);
             conn.ReqUpdate(req, parameters);
         }
 
@@ -124,14 +130,16 @@ namespace Habilitations.dal
         {
             string req = "update developpeur set nom = @nom, prenom = @prenom, tel = @tel, mail = @mail, idprofil = @idprofil ";
             req += "where iddeveloppeur = @iddeveloppeur;";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@idDeveloppeur", developpeur.Iddeveloppeur);
-            parameters.Add("@nom", developpeur.Nom);
-            parameters.Add("@prenom", developpeur.Prenom);
-            parameters.Add("@tel", developpeur.Tel);
-            parameters.Add("@mail", developpeur.Mail);
-            parameters.Add("idprofil", developpeur.Idprofil);
-            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@idDeveloppeur", developpeur.Iddeveloppeur },
+                { "@nom", developpeur.Nom },
+                { "@prenom", developpeur.Prenom },
+                { "@tel", developpeur.Tel },
+                { "@mail", developpeur.Mail },
+                { "idprofil", developpeur.Idprofil }
+            };
+            ConnexionBdd conn = ConnexionBdd.GetInstance(connectionString);
             conn.ReqUpdate(req, parameters);
         }
 
@@ -143,10 +151,12 @@ namespace Habilitations.dal
         {
             string req = "update developpeur set pwd = @pwd ";
             req += "where iddeveloppeur = @iddeveloppeur;";
-            Dictionary<string, object> parameters = new Dictionary<string, object>();
-            parameters.Add("@idDeveloppeur", developpeur.Iddeveloppeur);
-            parameters.Add("@pwd", GetStringSha256Hash(developpeur.Pwd));
-            ConnexionBDD conn = ConnexionBDD.GetInstance(connectionString);
+            Dictionary<string, object> parameters = new Dictionary<string, object>
+            {
+                { "@idDeveloppeur", developpeur.Iddeveloppeur },
+                { "@pwd", GetStringSha256Hash(developpeur.Pwd) }
+            };
+            ConnexionBdd conn = ConnexionBdd.GetInstance(connectionString);
             conn.ReqUpdate(req, parameters);
         }
 

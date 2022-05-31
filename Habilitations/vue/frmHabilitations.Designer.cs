@@ -69,6 +69,7 @@
             this.dgvDeveloppeurs.Name = "dgvDeveloppeurs";
             this.dgvDeveloppeurs.ReadOnly = true;
             this.dgvDeveloppeurs.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.AutoSizeToAllHeaders;
+            this.dgvDeveloppeurs.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvDeveloppeurs.Size = new System.Drawing.Size(581, 206);
             this.dgvDeveloppeurs.TabIndex = 0;
             // 

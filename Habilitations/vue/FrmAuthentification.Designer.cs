@@ -32,7 +32,7 @@
             this.txtPwd = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.btnConnect = new System.Windows.Forms.Button();
+            this.BtnConnect = new System.Windows.Forms.Button();
             this.txtPrenom = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
@@ -70,15 +70,15 @@
             this.label2.TabIndex = 3;
             this.label2.Text = "pwd";
             // 
-            // btnConnect
+            // BtnConnect
             // 
-            this.btnConnect.Location = new System.Drawing.Point(152, 90);
-            this.btnConnect.Name = "btnConnect";
-            this.btnConnect.Size = new System.Drawing.Size(91, 23);
-            this.btnConnect.TabIndex = 4;
-            this.btnConnect.Text = "se connecter";
-            this.btnConnect.UseVisualStyleBackColor = true;
-            this.btnConnect.Click += new System.EventHandler(this.btnConnect_Click);
+            this.BtnConnect.Location = new System.Drawing.Point(152, 90);
+            this.BtnConnect.Name = "BtnConnect";
+            this.BtnConnect.Size = new System.Drawing.Size(91, 23);
+            this.BtnConnect.TabIndex = 4;
+            this.BtnConnect.Text = "se connecter";
+            this.BtnConnect.UseVisualStyleBackColor = true;
+            this.BtnConnect.Click += new System.EventHandler(this.BtnConnect_Click);
             // 
             // txtPrenom
             // 
@@ -103,7 +103,7 @@
             this.ClientSize = new System.Drawing.Size(252, 121);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.txtPrenom);
-            this.Controls.Add(this.btnConnect);
+            this.Controls.Add(this.BtnConnect);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtPwd);
@@ -121,7 +121,7 @@
         private System.Windows.Forms.TextBox txtPwd;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button btnConnect;
+        private System.Windows.Forms.Button BtnConnect;
         private System.Windows.Forms.TextBox txtPrenom;
         private System.Windows.Forms.Label label3;
     }
