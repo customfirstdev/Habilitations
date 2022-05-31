@@ -86,13 +86,13 @@ namespace Habilitations.vue
         /// <param name="e"></param>
         private void BtnSupprimer_Click(object sender, System.EventArgs e)
         {
-            if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
+            if (dgvDeveloppeurs.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
+                MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
             }
             else
             {
-                if (dgvDeveloppeurs.SelectedRows.Count > 0)
+                if (((Developpeur)bdgDeveloppeurs.List[dgvDeveloppeurs.SelectedRows[0].Index]).Profil.Equals("admin"))
                 {
                     Developpeur developpeur = (Developpeur)bdgDeveloppeurs.List[bdgDeveloppeurs.Position];
                     if (MessageBox.Show("Voulez-vous vraiment supprimer " + developpeur.Nom + " " + developpeur.Prenom + " ?", "Confirmation de suppression", MessageBoxButtons.YesNo) == DialogResult.Yes)
@@ -103,7 +103,7 @@ namespace Habilitations.vue
                 }
                 else
                 {
-                    MessageBox.Show("Une ligne doit être sélectionnée.", "Information");
+                    MessageBox.Show("Un admin ne peut pas être supprimé", "Information");
                 }
             }
         }
